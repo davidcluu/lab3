@@ -34,12 +34,20 @@ function projectClick(e) {
 
   var containingProject = $(this).closest(".project");
   var description = $(containingProject).find(".project-description");
+  var image = $(containingProject).find(".img");
   // If description is empty, make a generic one and append it
   if (description.length == 0) {
        $(containingProject).append("<div class='project-description'><p>Description of the project.</p></div>");
   }
   // Toggle visibilitty
   $(description).toggleClass("hidden");
+  //Fix for initial out of sync picture/description visibility
+  if (image.hasClass("synced")) {
+    $(image).toggleClass("hidden");  
+  }
+  else {
+    $(image).addClass("synced");
+  }
 }
 
 function updateProjects(e) {
@@ -50,7 +58,7 @@ function updateProjects(e) {
 
   //If there's no description, make a new hidden one and then change the text
   if ($(project + " .project-description").length == 0) {
-       $(project).append("<div class='project-description hidden'><p> </p></div>");
+       $(project).append("<div class='project-description hidden'><p>&nbsp</p></div>");
   }
   var newText = $("#description").val();
   $(project + " .project-description").text(newText);

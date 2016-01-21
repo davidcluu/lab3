@@ -45,6 +45,6 @@ body {
      text-align: center;
 }
 
-.project .project-description .hidden {
+.hidden {
      visibility: hidden;
 }
